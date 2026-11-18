@@ -16,5 +16,5 @@ One entry per milestone (newest first). Three questions, one change.
    files with placeholders instead of this project's names. It links the PR above and never
    merges it.
 2. Lists project-seed PRs merged since this project started (or since the last retro), so
-   {{OWNER_NAME}} can decide whether to bring any of them here:
+   the owner can decide whether to bring any of them here:
    `gh pr list --repo {{GH_OWNER}}/project-seed --state merged --search "merged:>=<date>"`

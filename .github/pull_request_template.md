@@ -7,5 +7,5 @@ Closes #
 ## Checklist
 - [ ] If this accepts an ADR: `docs/architecture.md` is updated
 
-## Needs {{OWNER_NAME}}
+## Needs the owner
 <!-- decisions, manual checks, anything to look at closely -->

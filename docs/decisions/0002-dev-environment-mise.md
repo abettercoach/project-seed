@@ -1,7 +1,7 @@
 # ADR-0002: Dev environment with mise + language lockfiles
 
 - **Status:** Accepted, {{DATE}}
-- **Deciders:** {{OWNER_NAME}}
+- **Deciders:** Owner
 
 ## Context
 We want pinned, reproducible tool versions that every AI tool and the owner share, installed per

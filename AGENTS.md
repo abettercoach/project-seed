@@ -13,20 +13,20 @@ How we work: `docs/process/working-agreement.md`
 ## Hard rules
 <!-- seed: project-specific rules go first (private data, network, what never leaves the machine).
      Delete this comment when done. -->
-1. **Never read the Keychain or print tokens.** `GH_TOKEN` comes from {{OWNER_NAME}}'s shell.
+1. **Never read the Keychain or print tokens.** `GH_TOKEN` comes from the owner's shell.
    No secrets in the repo, issues, commits, or PRs.
-2. **Ask before deciding** anything in the working agreement's "{{OWNER_NAME}} decides" list
+2. **Ask before deciding** anything in the working agreement's "Owner decides" list
    (interfaces, schemas, new dependencies, UX flows, process changes).
 3. Don't push, open or close issues, or change GitHub settings unless the task says to.
-4. **project-seed changes only as a PR**, and never merge one. {{OWNER_NAME}} reviews and merges.
+4. **project-seed changes only as a PR**, and never merge one. The owner reviews and merges.
 
 ## Workflow
 - Work is tracked in **GitHub Issues** (milestones = roadmap phases). One issue → one branch
   (`feat/<issue#>-short-name`) → small commits → PR into `main`.
 - Labels (`.github/labels.txt`): one `type:` and one `area:` per issue; `ready` when it's clear
-  enough to start; `needs-{{OWNER_SLUG}}` while waiting on an {{OWNER_NAME}} decision or check.
+  enough to start; `needs-owner` while waiting on an owner decision or check.
 - Before calling something done, run `just check` and show how you verified the acceptance
-  criteria. List any manual checks that only {{OWNER_NAME}} can do.
+  criteria. List any manual checks that only the owner can do.
 - End each work session with a handoff comment on the issue: state, open questions, next step.
 - End each milestone with a demo and a retro (`docs/process/retros.md`).
 

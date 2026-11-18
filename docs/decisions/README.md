@@ -3,7 +3,7 @@
 Numbered, short, and immutable once accepted. To change a decision, write a new ADR that
 supersedes the old one.
 
-- **When to write one:** only for decisions on the working agreement's "{{OWNER_NAME}} decides"
+- **When to write one:** only for decisions on the working agreement's "Owner decides"
   list that are hard to undo (stack, schemas, protocols, on-disk layout). Smaller choices go in
   the PR description.
 - **Numbers are assigned at merge.** Take the next free number when the ADR lands on `main`.

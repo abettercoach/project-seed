@@ -1,7 +1,7 @@
 # ADR-0001: Repo from project-seed, GitHub Issues, per-repo token
 
 - **Status:** Accepted, {{DATE}}
-- **Deciders:** {{OWNER_NAME}}
+- **Deciders:** Owner
 
 ## Context
 We want the same small, tool-agnostic process in every project, without rebuilding it each time,
@@ -18,5 +18,5 @@ and without one project's agent being able to reach another project.
 ## Consequences
 - Agents can work issues with `gh`, but can't reach other projects.
 - The token can also write to project-seed. Changes there go through PRs that only
-  {{OWNER_NAME}} merges (AGENTS.md hard rules; `main` is protected in project-seed).
+  the owner merges (AGENTS.md hard rules; `main` is protected in project-seed).
 - The token expires and needs rotating.

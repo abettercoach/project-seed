@@ -7,4 +7,4 @@ type:chore|cfd3d7|Maintenance, setup, docs
 type:adr|5319e7|Produces a decision record
 area:process|0e8a16|Docs and how we work
 ready|2ea44f|Clear enough to start
-needs-{{OWNER_SLUG}}|b60205|Waiting on an {{OWNER_NAME}} decision or check
+needs-owner|b60205|Waiting on an owner decision or check
