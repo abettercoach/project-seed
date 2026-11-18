@@ -1,0 +1,6 @@
+# Per-project tool versions (ADR-0002). Run `mise install` to set everything up.
+# Pin exact versions; bump them deliberately in their own commit.
+[tools]
+gh = "2.103.3"
+direnv = "2.38.2"
+just = "1.59.0"

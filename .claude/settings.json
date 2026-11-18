@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(security find-generic-password:*)",
+      "Bash(security dump-keychain:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.envrc.local)"
+    ]
+  }
+}

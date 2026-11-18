@@ -1,0 +1,21 @@
+# local data — never commit
+.devdata/
+
+# secrets / machine-local
+.env
+.env.*
+.envrc.local
+.claude/settings.local.json
+
+# deps & builds
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+
+# macOS
+.DS_Store
+
+# agent worktrees
+.claude/worktrees/
