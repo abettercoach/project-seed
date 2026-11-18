@@ -23,6 +23,8 @@ How we work: `docs/process/working-agreement.md`
 ## Workflow
 - Work is tracked in **GitHub Issues** (milestones = roadmap phases). One issue → one branch
   (`feat/<issue#>-short-name`) → small commits → PR into `main`.
+- Labels (`.github/labels.txt`): one `type:` and one `area:` per issue; `ready` when it's clear
+  enough to start; `needs-{{OWNER_SLUG}}` while waiting on an {{OWNER_NAME}} decision or check.
 - Before calling something done, run `just check` and show how you verified the acceptance
   criteria. List any manual checks that only {{OWNER_NAME}} can do.
 - End each work session with a handoff comment on the issue: state, open questions, next step.

@@ -31,3 +31,12 @@ typecheck:
 # Fix formatting and safe lint issues
 fmt:
     @echo "fmt: nothing to format yet"
+
+# Create or update the GitHub labels in .github/labels.txt (safe to re-run)
+labels:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    while IFS='|' read -r name color desc; do
+      [[ -z "$name" || "$name" == \#* ]] && continue
+      gh label create "$name" --color "$color" --description "$desc" --force
+    done < .github/labels.txt

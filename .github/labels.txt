@@ -1,0 +1,10 @@
+# Labels for this repo: name|color|description. Apply with `just labels` (safe to re-run).
+# GitHub's default labels (bug, enhancement, ...) stay as they are.
+type:feature|1d76db|New capability
+type:bug|d73a4a|Something broken
+type:spike|fbca04|Time-boxed probe; output is findings
+type:chore|cfd3d7|Maintenance, setup, docs
+type:adr|5319e7|Produces a decision record
+area:process|0e8a16|Docs and how we work
+ready|2ea44f|Clear enough to start
+needs-{{OWNER_SLUG}}|b60205|Waiting on an {{OWNER_NAME}} decision or check

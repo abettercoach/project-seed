@@ -18,9 +18,10 @@ placeholders below.
 
 | Placeholder | Meaning |
 |---|---|
-| `{{PROJECT}}` | Repo and folder name, e.g. `abetter-inventory` |
+| `{{PROJECT}}` | Repo and folder name, e.g. `my-app` |
 | `{{PROJECT_SUMMARY}}` | One or two lines on what it is |
 | `{{OWNER_NAME}}` | The human who makes the decisions |
+| `{{OWNER_SLUG}}` | The same, lowercase, for the `needs-…` label (e.g. `alex`) |
 | `{{GH_OWNER}}` | GitHub account or org that owns the repo |
 | `{{DATE}}` | The day the project starts (YYYY-MM-DD) |
 | `<!-- seed: ... -->` | A section to fill in or delete |
