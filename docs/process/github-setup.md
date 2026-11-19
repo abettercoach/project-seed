@@ -7,7 +7,8 @@ login, and direnv sets that variable whenever you're inside this folder.
 The token never passes through an agent. You make it in the browser and store it in a Terminal
 window of your own, not in the Claude session.
 
-Keychain name for this repo: **`gh-token-project-seed`** (the name in `.envrc`).
+Keychain name for this repo: **`gh-token-{{PROJECT}}`** (`gh-token-project-seed` in the seed
+itself). `.envrc` builds it from the folder name, so the folder must be named exactly like the repo.
 
 ## Is it working?
 Run these inside the repo folder:
@@ -43,7 +44,7 @@ empty, run `direnv allow` (and then `direnv reload` if you just changed the Keyc
 ## Storing it in the Keychain
 In a Terminal window of your own (not the Claude session):
 ```
-security add-generic-password -U -s gh-token-project-seed -a "$USER" -w
+security add-generic-password -U -s gh-token-{{PROJECT}} -a "$USER" -w
 ```
 Paste the token at the prompt. ⚠️ Leave **nothing** after `-w` so it prompts you. A token typed
 on the command line is saved in plain text in `~/.zsh_history`. `-U` replaces an existing entry,
