@@ -23,12 +23,14 @@ packages (the lockfiles). So a fresh machine is these steps, in order.
    ```
    If the direnv version in `mise.toml` changes, update the second line to match. These lines
    are shared by every project, so a Mac that already has them can skip this step.
+   Check, in a new window: `type _direnv_hook` prints *is a shell function*. (A plain
+   `direnv version` fails outside a repo; that's expected, each repo's `mise.toml` provides it.)
 4. **GitHub token:** follow `github-setup.md` (making the token, then storing it in the
    Keychain). On a machine without the repo yet, read that file on github.com.
 5. **Clone the repo** with that token (nothing is saved to git's config):
    ```
    mkdir -p ~/Documents/Dev && cd ~/Documents/Dev
-   GH_TOKEN="$(security find-generic-password -s gh-token-project-seed -a "$USER" -w)" \
+   GH_TOKEN="$(security find-generic-password -s gh-token-{{PROJECT}} -a "$USER" -w)" \
      ~/.local/bin/mise x gh@2.103.3 -- gh repo clone {{GH_OWNER}}/{{PROJECT}}
    ```
 6. **In the repo:**

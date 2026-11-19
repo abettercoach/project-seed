@@ -12,6 +12,14 @@ With Claude Code: make an empty folder `~/Documents/Dev/<project>`, start `claud
 `/new-project`. It walks through every step, including the GitHub parts you only do once in a
 while.
 
+The skill lives in this repo (`seed-tools/new-project/`), so it changes only through a PR like
+everything else. Install it once per Mac, from a clone of the seed:
+```
+ln -s ~/Documents/Dev/project-seed/seed-tools/new-project ~/.claude/skills/new-project
+```
+After a seed PR merges, `git pull` in `~/Documents/Dev/project-seed` updates the skill.
+New projects delete their copy of `seed-tools/` during setup.
+
 By hand: github.com → **New repository** → **Repository template: project-seed** → private →
 create. Then follow `docs/process/github-setup.md` in the new repo, and replace the
 placeholders below.
@@ -24,8 +32,7 @@ placeholders below.
 | `{{DATE}}` | The day the project starts (YYYY-MM-DD) |
 | `<!-- seed: ... -->` | A section to fill in or delete |
 
-In `.envrc` and the docs, the Keychain entry name `gh-token-project-seed` changes to
-`gh-token-{{PROJECT}}`.
+`.envrc` needs no edit: it reads the Keychain entry `gh-token-<folder name>`.
 
 ## Changing the seed
 Only through a pull request, reviewed and merged by the owner. Changes usually come from a

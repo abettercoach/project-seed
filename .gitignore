@@ -6,6 +6,7 @@
 .env.*
 .envrc.local
 .claude/settings.local.json
+.claude/.cc-writes/
 
 # deps & builds
 node_modules/
