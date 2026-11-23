@@ -6,8 +6,14 @@ description: Start a new project from the project-seed template (GitHub repo, pe
 # New project from project-seed
 
 The owner sets up a new repo only every few months and won't remember the steps.
-**Walk them through every step, one at a time**, with the exact clicks and commands. Wait for
-them to confirm each step before the next. Never skip a step because it "seems obvious."
+**Walk them through every step they do themselves, one at a time**, with the exact clicks and
+commands. Wait for them to confirm each of those steps before the next. Never skip a step
+because it "seems obvious."
+
+**Your own steps are different: do them, then report.** Running the skill is the owner's go-ahead
+for the routine setup work (the setup branch, push and PR, labels, milestones, the agreed M0
+issues). Don't ask for a yes on each one. Ask only for real decisions: product, scope, stack,
+private data, licensing, or anything the answers don't settle.
 
 Defaults: GitHub owner `abettercoach`, projects in `~/Documents/Dev/`,
 seed at `abettercoach/project-seed` (public template repo). Confirm these at the start, in one line.
@@ -25,8 +31,8 @@ This skill lives in project-seed at `seed-tools/new-project/SKILL.md` and is sym
   `[ -n "$GH_TOKEN" ] && echo set || echo empty` and `gh auth status`.
 - Commands with `security` or anything that reads the Keychain: the user runs them **in a
   Terminal window of their own**, not with `!` in this session.
-- Before anything that writes to GitHub (push, PR, milestones, labels, issues), show what will
-  happen and get a yes.
+- GitHub writes outside the setup work above (settings, deleting anything, other repos) need
+  a yes first.
 - **Never merge a PR to project-seed.**
 - Always fill in the project name and owner literally in instructions; never show placeholders.
 
@@ -49,11 +55,16 @@ git rev-parse --is-inside-work-tree 2>/dev/null && git remote -v && git log --on
 grep -rl '{{PROJECT}}' . --exclude-dir=.git 2>/dev/null | head -3
 [ -n "$GH_TOKEN" ] && echo "GH_TOKEN set" || echo "GH_TOKEN empty"
 ```
-- No git (the folder is empty apart from `.claude/`) → **Part 1**.
+- No git (the folder is empty apart from `.claude/` and maybe `setup-handoff/`) → **Part 1**.
 - Git, placeholders there, `GH_TOKEN` empty → the user hasn't restarted from their Terminal
   yet: repeat **1.6**.
 - Git, placeholders there, `GH_TOKEN` set → **Part 2**.
 - No placeholders left → setup is done. Run the **Final check** and report anything missing.
+
+**A prepared handoff:** if `setup-handoff/SETUP.md` exists, read it first, at any stage. Another
+session wrote it with the owner: it pre-answers the 2.1 interview, lists the M0 issues, and says
+where its other files go. Don't re-ask what it answers; ask only what it marks **open**. The
+`git pull` in 1.5 works with it there (the seed has no `setup-handoff/` path).
 
 The project name is the folder name (`basename "$PWD"`). It must be lowercase with hyphens
 (e.g. `abetter-inventory`), and it must match the GitHub repo name exactly, because `.envrc`
@@ -142,7 +153,8 @@ of them fail, go back to the matching Part 1 step.
 If the user noted problems with this skill or the seed during Part 1, offer the seed PR now
 (see **Seed PRs**) before continuing.
 
-**2.1 Interview** (ask in one go, then follow up only where needed):
+**2.1 Interview** (ask in one go, then follow up only where needed). With a `setup-handoff/SETUP.md`,
+skip every question it answers:
 1. In one or two lines, what is it? Who uses it?
 2. Hard rules: private or client data? Must anything stay local, with no network calls? What should
    an agent never read?
@@ -173,19 +185,21 @@ If the user noted problems with this skill or the seed during Part 1, offer the 
   `saveExact: true` in `pnpm-workspace.yaml`), and add stack ignores to `.gitignore`. A stack
   choice is an "Owner decides" item: propose it, then wait. If it's undecided, leave the
   skeleton recipes as they are.
-- Keep the commit small and readable. Show `git diff --stat` and the key files before committing.
+- With a handoff: move its files where `SETUP.md` says, then delete `setup-handoff/`
+  (`SETUP.md` itself is never committed; its answers now live in the repo's files).
+- Keep the commit small and readable. Summarize `git diff --stat` and the key changes in the PR.
 
-**2.3 Push and open the PR** (after a yes):
+**2.3 Push and open the PR:**
 ```
 git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push -u origin chore/setup-from-seed
 gh pr create --fill
 ```
 The owner reviews and merges it. CI runs `just check`.
 
-**2.4 GitHub setup** (show the list, then do it after a yes):
+**2.4 GitHub setup** (do it, then list what was created):
 - Milestones: `gh api repos/abettercoach/<project>/milestones -f title="M0: Foundation" -f description="..."`
-- Offer to open M0 issues from the interview (e.g. a stack ADR, first spike). Use the Task template's
-  sections: Why / Acceptance criteria / Out of scope / How to verify.
+- Open the M0 issues from the interview or `SETUP.md` (e.g. a stack ADR, first spike). Use the
+  Task template's sections: Why / Acceptance criteria / Out of scope / How to verify.
 - Labels: `just labels`. It creates or updates everything in `.github/labels.txt` and leaves
   GitHub's default labels alone. Run it after the setup PR is merged, or from the branch.
   Label the M0 issues with them.
@@ -202,6 +216,13 @@ yourself): Settings → General → Pull Requests → **Automatically delete hea
 - Tell the owner the token's expiry date (90 days from the day it was made) for the calendar,
   and that `docs/process/github-setup.md` in the repo covers rotating, a new Mac, and
   pushing/pulling.
+
+## Preparing a handoff for a new project (from another session)
+When the owner decides in another project's session to start a new repo, make setup quick:
+create `~/Documents/Dev/<project>/setup-handoff/` with a `SETUP.md` holding the 2.1 answers
+(what it is, hard rules, stack, milestones, owner-decides items, areas), the M0 issues to open,
+and where any other files in the folder go. Mark anything undecided as **open**. Then the owner
+runs `claude` in `~/Documents/Dev/<project>` and `/new-project`.
 
 ## Seed PRs
 When something in this skill or the seed's process files was wrong or clumsy, fix it in the
